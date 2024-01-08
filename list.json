@@ -1,0 +1,14 @@
+{
+  "list": [
+    {
+      "name": "signal",
+      "version": "1.0",
+      "section": "chat",
+      "maintainer": "chenyk1219",
+      "size": "4.759 kb",
+      "supported": true,
+      "des_short": "更改信号插件，用于更改接收信号的关键字",
+      "des": "更改信号插件，用于更改接收信号的关键字"
+    }
+  ]
+}
