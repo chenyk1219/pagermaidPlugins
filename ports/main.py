@@ -30,16 +30,16 @@ async def ports(bot: Client, context: Message):
     port = 22
 
     if len(context.parameter) == 0:
-        context_list.append("error：未指定端口号，比如 ,ports 22，默认检测22端口")
+        context_list.append("error：未指定端口号，比如 ,ports 22，即将检测默认端口22")
         await context.edit("\n".join(context_list))
     else:
         try:
             port = int(context.parameter[0])
             if port < 0 or port > 65535:
-                context_list.append("error：端口号范围为0-65535，比如 ,ports 22，默认检测22端口")
+                context_list.append("error：端口号范围为0-65535，比如 ,ports 22，即将检测默认端口22")
                 await context.edit("\n".join(context_list))
         except:
-            context_list.append("error：端口号必须为数字，比如 ,ports 22，默认检测22端口")
+            context_list.append("error：端口号必须为数字，比如 ,ports 22，即将检测默认端口22")
             await context.edit("\n".join(context_list))
         finally:
             context_list.append(" ")
