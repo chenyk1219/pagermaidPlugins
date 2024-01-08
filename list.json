@@ -12,10 +12,10 @@
         },
         {
             "name": "ports",
-            "version": "1.09",
+            "version": "1.10",
             "section": "chat",
             "maintainer": "chenyk1219",
-            "size": "4.51 kb",
+            "size": "4.487 kb",
             "supported": true,
             "des_short": "add ports",
             "des": "检测端口连接情况"
