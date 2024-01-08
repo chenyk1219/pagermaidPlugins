@@ -15,7 +15,7 @@ try:
     import psutil
     import prettytable
 except:
-    subprocess.Popen("python -m pip3 install psutil prettytable").wait()
+    subprocess.Popen("python3 -m pip3 install psutil prettytable").wait()
 finally:
     import psutil
     import prettytable
