@@ -19,26 +19,22 @@ import time
 async def ports(bot: Client, context: Message):
     context_list = []
 
-    port_list = context.parameter
-
     startTime = time.time()
 
     port = 22
 
-    if port_list is None or len(port_list) == 0:
+    if context.parameter is None or len(context.parameter) == 0:
         context_list.append("为指定端口号，比如 ,ports 22，默认检测22端口")
         await context.edit("\n".join(context_list))
     else:
         try:
-            port = int(port_list[0])
+            port = int(context.parameter[0])
             if port < 0 or port > 65535:
                 context_list.append("端口号范围为0-65535")
                 await context.edit("\n".join(context_list))
-                return
         except:
             context_list.append("端口号必须为数字")
             await context.edit("\n".join(context_list))
-            return
     # define data structure for each connection, each ip is unique unit
     ipaddress = {
         'ipaddress': None,
