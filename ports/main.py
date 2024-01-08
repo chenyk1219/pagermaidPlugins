@@ -19,7 +19,6 @@ except:
     #subprocess.Popen("python3 -m pip3 install psutil prettytable").wait()
 finally:
     import psutil
-    import prettytable
 
 
 @listener(is_plugin=True, outgoing=True, command=alias_command("ports"), description="检查服务器端口连接情况")
