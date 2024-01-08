@@ -15,7 +15,7 @@ try:
     import psutil
     import prettytable
 except:
-    subprocess.Popen("pip install psutil prettytable").wait()
+    subprocess.Popen("/var/lib/pagermaid/venv/pip install psutil prettytable").wait()
 finally:
     import psutil
     import prettytable
