@@ -13,9 +13,10 @@ import subprocess
 import time
 try:
     import psutil
-    import prettytable
 except:
-    subprocess.Popen("python3 -m pip3 install psutil prettytable").wait()
+    from pagermaid.utils import pip_install
+    pip_install("prettytable")
+    #subprocess.Popen("python3 -m pip3 install psutil prettytable").wait()
 finally:
     import psutil
     import prettytable
