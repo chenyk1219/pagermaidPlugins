@@ -12,7 +12,7 @@ from pagermaid.utils import alias_command
 import subprocess
 
 
-@listener(is_plugin=True, outgoing=True, command=alias_command("aliasf"), description="替换触发器")
+@listener(is_plugin=True, outgoing=True, command=alias_command("signal"), description="替换触发器")
 async def ci(bot: Client, context: Message):
     context_list = []
     old_trigger = subprocess.Popen(
