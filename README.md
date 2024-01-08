@@ -7,6 +7,12 @@ PagerMaid-Pyro 的地址：[PagerMaid-Pyro](https://github.com/TeamPGM/PagerMaid
 
 ⚠ **PagerMaid-Modify 版插件请前往 [PagerMaid_Plugins](https://github.com/TeamPGM/PagerMaid_Plugins/tree/master)**。
 
+## 使用方法
+
+```shell
+,apt_source add https://raw.githubusercontent.com/chenyk1219/pagermaidPlugins/main
+```
+
 ## 插件列表
 
 - signal
