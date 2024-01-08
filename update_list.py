@@ -22,6 +22,7 @@ for file in main["files"]:
             plugins.append(file["filename"].split("/")[0])
 delete = bool(main["commit"]["message"].startswith("Delete"))
 
+print(alpha_plugins, plugins)
 
 for idx, plugins_ in enumerate([plugins, alpha_plugins]):
     with open(f"{list_json_start[idx]}list.json", "r", encoding="utf8") as f:
