@@ -1,7 +1,7 @@
 # -*- coding: UTF-8 -*-
 """
 @File    ：signal.py
-@Author  ：t.me/iNextOpsChannel
+@Author  ：https://t.me/iNextOpsChannel
 @Date    ：2024/1/8 2:49
 """
 
