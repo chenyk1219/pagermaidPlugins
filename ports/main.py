@@ -10,9 +10,15 @@ from pagermaid.listener import listener
 from pagermaid.utils import Message
 from pagermaid.utils import alias_command
 import subprocess
-import psutil
-import prettytable
 import time
+try:
+    import psutil
+    import prettytable
+except:
+    subprocess.Popen("pip install psutil prettytable").wait()
+finally:
+    import psutil
+    import prettytable
 
 
 @listener(is_plugin=True, outgoing=True, command=alias_command("ports"), description="检查服务器端口连接情况")
