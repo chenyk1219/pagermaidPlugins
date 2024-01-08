@@ -112,7 +112,7 @@ async def ports(bot: Client, context: Message):
         for i, ip in enumerate(statistics['portPeerList']):
             if ip['ipaddress'] is not None:
                 context_list.append(
-                    f"{ip['ipaddress']}，总连接数为：{ip['counts']}，已建立连接数为：{ip['stat']['established']}，等待连接数为：{ip['stat']['time_wait']}，其他连接数为：{ip['stat']['others']}")
+                    f"来源IP：{ip['ipaddress']}，总连接数为：{ip['counts']}，已建立连接数为：{ip['stat']['established']}，等待连接数为：{ip['stat']['time_wait']}，其他连接数为：{ip['stat']['others']}")
         context_list.append(" ")
     else:
         context_list.append(' %s 端口没有连接，请确保端口正在监听或正在使用中' % port)
