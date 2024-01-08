@@ -35,9 +35,9 @@ jobs:
         pip install httpx
 
     # 发送通知
-    - name: Send notice
-      run: |
-        python telegram_update.py ${{ secrets.TG_BOT_TOKEN }}
+#    - name: Send notice
+#      run: |
+#        python telegram_update.py ${{ secrets.TG_BOT_TOKEN }}
 
     # 更新 list
     - name: Update list
