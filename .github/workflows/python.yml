@@ -1,4 +1,4 @@
-name: Github commit to telegram
+name: Update list
 
 on:
   push:
