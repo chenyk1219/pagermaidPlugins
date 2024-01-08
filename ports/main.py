@@ -23,10 +23,11 @@ async def ports(bot: Client, context: Message):
 
     startTime = time.time()
 
+    port = 22
+
     if port_list is None or len(port_list) == 0:
         context_list.append("为指定端口号，比如 ,ports 22，默认检测22端口")
         await context.edit("\n".join(context_list))
-        port = 22
     else:
         try:
             port = int(port_list[0])
