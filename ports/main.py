@@ -118,6 +118,6 @@ async def ports(bot: Client, context: Message):
         context_list.append(' %s 端口没有连接，请确保端口正在监听或正在使用中' % port)
 
     endTime = time.time()
-    context_list.append("耗时(s): %s seconds." % (endTime - startTime))
+    context_list.append("耗时(s): %s" % (endTime - startTime))
 
     await context.edit("\n".join(context_list))
