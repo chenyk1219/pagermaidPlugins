@@ -24,7 +24,7 @@ async def ci(bot: Client, context: Message):
         context_list.append(f"新的触发器为：{new_trigger}")
         shell_str = f"sed -i 's#{old_trigger}#{new_trigger}#g' /var/lib/pagermaid/pagermaid/listener.py"
         subprocess.Popen(str(shell_str), shell=True).wait()
-        context_list.append("触发器替换完毕，记得使用旧的触发器重启一下服务")
+        context_list.append(f"触发器替换完毕，记得使用旧的触发器 {old_trigger} 重启一下服务")
     else:
         context_list.append("参数格式不正确，要用|隔开，比如 ,|，|.")
     await context.edit("\n".join(context_list))
