@@ -3,6 +3,10 @@
 
 PagerMaid-Pyro 的地址：[PagerMaid-Pyro](https://github.com/TeamPGM/PagerMaid-Pyro)
 
+⚠ **请注意，不同版本的插件不通用。**  
+
+⚠ **PagerMaid-Modify 版插件请前往 [PagerMaid_Plugins](https://github.com/TeamPGM/PagerMaid_Plugins/tree/master)**。
+
 ## 插件列表
 
 - signal
