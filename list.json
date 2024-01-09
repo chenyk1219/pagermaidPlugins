@@ -19,6 +19,16 @@
             "supported": true,
             "des_short": "add ports",
             "des": "检测端口连接情况"
+        },
+        {
+            "name": "fy",
+            "version": "1.0",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "7.352 kb",
+            "supported": true,
+            "des_short": "add fy",
+            "des": ""
         }
     ]
 }
