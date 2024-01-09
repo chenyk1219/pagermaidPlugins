@@ -172,6 +172,8 @@ class YouDaoTranslator:
                       "\n\n使用场景：回复别人发的纯文本内容，输入 ,fy"
                       "\n\n检查ak和sk设置是否正确（明文，建议私发）：,fyck"
                       "\n\n去与外国友人对线吧!!!"
+                      "\n\n作者：@inextopschannel"
+                      "\n\n仓库：https://github.com/chenyk1219/pagermaidPlugins"
           )
 async def translate(bot: Client, context: Message):
     try:
