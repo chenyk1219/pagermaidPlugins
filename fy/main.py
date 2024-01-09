@@ -181,7 +181,7 @@ description = ("翻译指定内容，默认翻译为中文，目前只支持有�
                       "\n\n使用：,fy [mode]，mode: 可选参数翻译语言模式，en2zh或zh2en，默认为：auto2zh，其他的要用2隔开，比如en2de"
                       "\n\n使用场景：回复别人发的纯文本内容，输入 ,fy"
                       "\n\n检查ak和sk设置是否正确（明文，建议私发）：,fyck"
-                      "\n\n去与外国友人对线吧"
+                      "\n\n去与外国友人对线吧!!!"
           )
 async def translate(bot: Client, context: Message):
     try:
