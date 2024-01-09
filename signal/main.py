@@ -12,7 +12,7 @@ from pagermaid.utils import alias_command
 import subprocess
 
 
-@listener(is_plugin=True, outgoing=True, command=alias_command("signal"), description="替换触发器")
+@listener(is_plugin=True, outgoing=True, command=alias_command("signal"), description="替换触发器\n,使用方法：signal 'xxx|xxx'\n新的信号要用引号包起来并且至少是2个，因为是全文替换，所以如果是单个信号，比如,可能会导致文件的其他地方也被替换，导致程序无法正常运行\n如果不慎真的替换了，不要慌张，进入 /var/lib/pagermaid/pagermaid/目录，删了listener.py文件，重新下载https://github.com/TeamPGM/PagerMaid-Pyro/blob/master/pagermaid/listener.py，重新启动程序即可")
 async def ci(bot: Client, context: Message):
     context_list = []
     old_trigger = subprocess.Popen(
