@@ -174,7 +174,14 @@ description = ("翻译指定内容，默认翻译为中文，目前只支持有�
 
 
 @listener(is_plugin=True, outgoing=True, command="fy",
-          description=description
+          description="翻译指定内容，默认翻译为中文，目前只支持有道，官方申请key指导文档：https://ai.youdao.com/doc.s#guide，"
+                      "bob指导文档：https://bobtranslate.com/service/translate/youdao.html"
+                      "\n\n说明：使用前需要设置有道的API的ak和sk，ak和sk用引号包起来，防止特殊符合发生转译"
+                      "\n\n1. 设置ak：,fyak 'app_key'\n\n2. 设置sk：,fysk 'app_secret'"
+                      "\n\n使用：,fy [mode]，mode: 可选参数翻译语言模式，en2zh或zh2en，默认为：auto2zh，其他的要用2隔开，比如en2de"
+                      "\n\n使用场景：回复别人发的纯文本内容，输入 ,fy"
+                      "\n\n检查ak和sk设置是否正确（明文，建议私发）：,fyck"
+                      "\n\n去与外国友人对线吧"
           )
 async def translate(bot: Client, context: Message):
     try:
