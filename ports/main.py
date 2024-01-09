@@ -16,12 +16,11 @@ try:
 except:
     from pagermaid.utils import pip_install
     pip_install("psutil")
-    #subprocess.Popen("python3 -m pip3 install psutil prettytable").wait()
 finally:
     import psutil
 
 
-@listener(is_plugin=True, outgoing=True, command=alias_command("ports"), description="检查服务器端口连接情况")
+@listener(is_plugin=True, outgoing=True, command="ports", description="检查服务器端口连接情况\n使用方方法：,ports 80\n目前只支持单一端口，防止连接过多导致刷屏")
 async def ports(bot: Client, context: Message):
     context_list = []
 
