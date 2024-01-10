@@ -16,7 +16,7 @@ finally:
 
 
 @listener(is_plugin=True, outgoing=True, command="dmesg",
-          description="查看服务器所有的启动日志"
+          description="查看服务器的系统日志"
                       "\n安装方法：,install dmesg"
                       "\n使用方法：,dmesg"
                       "\n注意：此命令只在Linux系统下有效"
