@@ -1,11 +1,13 @@
-from pyrogram import Client
-from pagermaid.listener import listener
-from pagermaid.utils import Message
 import hashlib
+import os
 import time
 import uuid
+from configparser import ConfigParser
 from json import loads as json_loads
-import os
+
+from pagermaid.listener import listener
+from pagermaid.utils import Message
+from pyrogram import Client
 
 try:
     import requests
@@ -17,21 +19,23 @@ finally:
     import requests
 
 YOUDAO_URL = "https://openapi.youdao.com/api"
-MAX_LENGTH = 1500
+BASE_DIR = Path(__file__).resolve().parent
+KEY_FILE = BASE_DIR / "KeySecret.ini"  # 存储key与secret的json文件路径
+MAX_LENGTH = 1500  # 限制翻译输入的最大长度
 
 
 def load_key_secret() -> tuple[str, str]:
     """
-    读取环境变量里保存的API key
+    读取json文件中保存的API key
+
     :return:(key, secret)
     """
-    try:
-        app_key = os.getenv('ak')
-        app_secret = os.getenv('sk')
-    except:
-        app_key = app_secret = ''
+    conf = ConfigParser()
+    conf.read(KEY_FILE, encoding="utf-8")
+    APP_KEY = conf["YouDao"]["APP_KEY"]
+    APP_SECRET = conf["YouDao"]["APP_SECRET"]
 
-    return app_key, app_secret
+    return APP_KEY, APP_SECRET
 
 
 def set_key_secret(key, value):
@@ -39,7 +43,25 @@ def set_key_secret(key, value):
     设置环境变量，存储API key
     :return:
     """
-    os.environ[key] = value
+    conf = ConfigParser()
+    if not os.path.exists(KEY_FILE):
+        os.system(r"touch {}".format(KEY_FILE))
+        if "YouDao" in conf.sections():
+            conf.set("YouDao", option=key, value=value)
+            conf.write(open(KEY_FILE, "a", encoding="utf-8"))
+        else:
+            conf.add_section("YouDao")
+            conf.set("YouDao", option=key, value=value)
+            conf.write(open(KEY_FILE, "w", encoding="utf-8"))
+    else:
+        conf.read(KEY_FILE, encoding="utf-8")
+        if "YouDao" in conf.sections():
+            conf.set("YouDao", option=key, value=value)
+            conf.write(open(KEY_FILE, "r+", encoding="utf-8"))
+        else:
+            conf.add_section("YouDao")
+            conf.set("YouDao", option=key, value=value)
+            conf.write(open(KEY_FILE, "r+", encoding="utf-8"))
 
 
 class YouDaoTranslator:
@@ -183,16 +205,16 @@ async def translate(bot: Client, context: Message):
             mode = 'auto2zh'
         translator = YouDaoTranslator()
         trans_result = translator.translate(q, mode=mode)
-        await context.edit(trans_result)
+        await context.edit(context)
     except:
-        await context.edit("目前只支持翻译纯文本，请阅读使用指导：,help fy")
+        await context.edit("翻译异常，请阅读使用指导：,help fy，配置前置工作")
 
 
 @listener(is_plugin=True, outgoing=True, command="fyak",
           description="设置翻译的API AK")
 async def setdefaultak(bot: Client, context: Message):
     value = str(context.parameter[0]).strip('"').strip("'")
-    set_key_secret(key='ak', value=value)
+    set_key_secret(key='APP_KEY', value=value)
     await context.edit("有道翻译密钥设置成功")
 
 
@@ -200,7 +222,7 @@ async def setdefaultak(bot: Client, context: Message):
           description="设置翻译的API SK")
 async def setdefaultsk(bot: Client, context: Message):
     value = str(context.parameter[0]).strip('"').strip("'")
-    set_key_secret(key='sk', value=value)
+    set_key_secret(key='APP_SECRET', value=value)
     await context.edit("有道翻译密钥设置成功")
 
 
