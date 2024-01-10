@@ -28,7 +28,7 @@
             "size": "7.487 kb",
             "supported": true,
             "des_short": "add fy",
-            "des": ""
+            "des": "即使翻译"
         },
         {
             "name": "dmesg",
@@ -49,6 +49,16 @@
             "supported": true,
             "des_short": "update: 新增服务器网卡流量获取脚本\ntime: 2024年1月10日 11:10:47",
             "des": "获取所有网卡流量信息"
+        },
+        {
+            "name": "netstat",
+            "version": "1.0",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "2.267 kb",
+            "supported": true,
+            "des_short": "update: 新增端口查看plus版本\ntime: 2024年1月10日 15:53:30",
+            "des": "1. 查看服务器所有启动的端口 2. 这些端口的连接情况"
         }
     ]
 }
