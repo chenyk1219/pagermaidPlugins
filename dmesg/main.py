@@ -1,10 +1,8 @@
 from pyrogram import Client
 from pagermaid.listener import listener
 from pagermaid.utils import Message
-from pagermaid.utils import alias_command
 import subprocess
 import time
-import os
 import sys
 
 try:
