@@ -1,0 +1,74 @@
+{
+    "list": [
+        {
+            "name": "signal",
+            "version": "1.09",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "1.877 kb",
+            "supported": true,
+            "des_short": "更改信号插件，用于更改接收信号的关键字",
+            "des": "更新触发的指令"
+        },
+        {
+            "name": "ports",
+            "version": "1.11",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "4.488 kb",
+            "supported": true,
+            "des_short": "add ports",
+            "des": "检测端口连接情况"
+        },
+        {
+            "name": "fy",
+            "version": "1.02",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "7.487 kb",
+            "supported": true,
+            "des_short": "add fy",
+            "des": "即使翻译"
+        },
+        {
+            "name": "dmesg",
+            "version": "1.01",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "1.535 kb",
+            "supported": true,
+            "des_short": "update: 新增服务器日志获取脚本\ntime: 2024年1月10日 11:10:47",
+            "des": "获取服务器所有启动运行日志"
+        },
+        {
+            "name": "nettop",
+            "version": "1.0",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "3.634 kb",
+            "supported": true,
+            "des_short": "update: 新增服务器网卡流量获取脚本\ntime: 2024年1月10日 11:10:47",
+            "des": "获取所有网卡流量信息"
+        },
+        {
+            "name": "netstat",
+            "version": "1.0",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "2.267 kb",
+            "supported": true,
+            "des_short": "update: 新增端口查看plus版本\ntime: 2024年1月10日 15:53:30",
+            "des": "1. 查看服务器所有启动的端口 2. 这些端口的连接情况"
+        },
+        {
+            "name": "procs",
+            "version": "1.0",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "2.545 kb",
+            "supported": true,
+            "des_short": "update: 新增查看服务器进程的脚本\ntime: 2024年1月10日 17:22:48",
+            "des": "查看服务器所有服务进程，看看有没有异常进程"
+        }
+    ]
+}
