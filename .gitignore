@@ -9,6 +9,8 @@ __pycache__/
 test
 *.json
 */*.json
+list.json
+alpha/list.json
 # Distribution / packaging
 .Python
 build/
