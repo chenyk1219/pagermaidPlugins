@@ -75,7 +75,7 @@ def main():
 
 
 @listener(is_plugin=True, outgoing=True, command="procs",
-          description="\n\n功能：查看服务器所有服务进程，看看有没有异常进程"
+          description="\n功能：查看服务器所有服务进程，看看有没有异常进程"
                       "\n安装方法：,install procs"
                       "\n使用方法：,procs"
                       "\n注意：此命令只在Linux系统下有效"
