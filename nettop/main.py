@@ -54,6 +54,7 @@ def poll(interval):
 def get_net_top(tot_before, tot_after, pnic_before, pnic_after):
     # totals
     context_list = []
+
     context_list.append("total bytes:           sent: %-10s   received: %s" % (
         bytes2human(tot_after.bytes_sent),
         bytes2human(tot_after.bytes_recv))
