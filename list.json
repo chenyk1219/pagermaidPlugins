@@ -22,10 +22,10 @@
         },
         {
             "name": "fy",
-            "version": "1.02",
+            "version": "1.03",
             "section": "chat",
             "maintainer": "chenyk1219",
-            "size": "7.487 kb",
+            "size": "8.527 kb",
             "supported": true,
             "des_short": "add fy",
             "des": "即使翻译"
