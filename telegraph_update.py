@@ -7,7 +7,7 @@ token = str(sys.argv[1])
 path = "PagerMaid-Plugins-11-27"
 title = "PagerMaid Pyro 插件列表"
 name = "PagerMaid-Modify Update"
-url = "https://t.me/PagerMaid_Modify"
+url = "https://t.me/inextopschannel/"
 temp = """<h3 id="{0}">{0}</h3><p>{1}</p><blockquote>,apt install {0}</blockquote>"""
 telegraph = Telegraph(token)
 
