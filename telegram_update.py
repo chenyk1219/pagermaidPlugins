@@ -11,7 +11,7 @@ text = (
     (
         (
             (
-                "#更新日志 #pyro #"
+                "#更新日志 #pagermaid插件 #"
                 + main["commit"]["author"]["name"].replace("_", "")
                 + " \n\n🔨 ["
                 + main["sha"][:7]
