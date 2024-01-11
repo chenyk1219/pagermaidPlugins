@@ -33,5 +33,4 @@ jobs:
     # 更新数据
     - name: Update Telegraph
       run: |
-#        python telegraph_update.py ${{ secrets.TELEGRAPH_TOKEN }}
         python telegram_update.py ${{ secrets.TELEGRAPH_TOKEN }}
