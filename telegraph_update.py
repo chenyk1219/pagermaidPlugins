@@ -1,39 +1,32 @@
-import time
+import json
 import sys
-import contextlib
-from httpx import get, post
+
+from telegraph import Telegraph
 
 token = str(sys.argv[1])
-main = get(
-    "https://api.github.com/repos/chenyk1219/pagermaidPlugins/commits/main"
-).json()
-text = (
-    (
-        (
-            (
-                "#更新日志 #pyro #"
-                + main["commit"]["author"]["name"].replace("_", "")
-                + " \n\n🔨 ["
-                + main["sha"][:7]
-            )
-            + "](https://github.com/chenyk1219/pagermaidPlugins/commits/"
-        )
-        + main["sha"]
-    )
-    + "): "
-) + main["commit"]["message"]
+path = "PagerMaid-Plugins-11-27"
+title = "PagerMaid Pyro 插件列表"
+name = "PagerMaid-Modify Update"
+url = "https://t.me/PagerMaid_Modify"
+temp = """<h3 id="{0}">{0}</h3><p>{1}</p><blockquote>,apt install {0}</blockquote>"""
+telegraph = Telegraph(token)
 
-url = f"https://api.telegram.org/bot{token}/sendMessage"
-for cid in ["-1002083747718"]:
-    push_content = {
-        "chat_id": cid,
-        "disable_web_page_preview": "True",
-        "parse_mode": "markdown",
-        "text": text,
-    }
-    # if cid == "-1001441461877":
-    #     push_content["message_thread_id"] = 1027828
-    with contextlib.suppress(Exception):
-        main_req = post(url, data=push_content)
-    time.sleep(1)
-print(main["sha"] + " ok！")
+
+def gen():
+    with open("list.json", "r", encoding="utf-8") as f:
+        data = json.load(f)
+    k = []
+    data["list"].sort(key=lambda i: i["name"])
+    for i in data["list"]:
+        des = i["des_short"]
+        if i["des"].startswith("这个人很懒") or i["des"] == i["des_short"]:
+            pass
+        else:
+            des += i["des"]
+        k.append(temp.format(i["name"], des))
+    return "<hr>".join(k)
+
+
+telegraph.edit_page(
+    path=path, title=title, html_content=gen(), author_name=name, author_url=url
+)
