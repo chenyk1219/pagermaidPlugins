@@ -205,7 +205,7 @@ async def translate(bot: Client, context: Message):
             mode = 'auto2zh'
         translator = YouDaoTranslator()
         trans_result = translator.translate(q, mode=mode)
-        await context.edit(context)
+        await context.edit(trans_result)
     except:
         await context.edit("翻译异常，请阅读使用指导：,help fy，配置前置工作")
 
