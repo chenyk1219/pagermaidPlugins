@@ -53,10 +53,10 @@ async def resize_image(photo):
 
 
 @listener(is_plugin=True, alias_command="ocr",
-          description="简单的图片OCR"
-                      "\n此脚本依赖了第三方库easyocr，这个库对cpu、gpu都有硬性要求。不是所有的服务器都能安装，建议先进服务器安装成功easyocr后再安装此脚本"
-                      "\n此脚本依赖了第三方库easyocr，这个库对cpu、gpu都有硬性要求。不是所有的服务器都能安装，建议先进服务器安装成功easyocr后再安装此脚本"
-                      "\n此脚本依赖了第三方库easyocr，这个库对cpu、gpu都有硬性要求。不是所有的服务器都能安装，建议先进服务器安装成功easyocr后再安装此脚本"
+          description="简单的图片OCR，重要的事情说三遍"
+                      "\n‼️此脚本依赖了第三方库easyocr，这个库对cpu、gpu都有硬性要求。不是所有的服务器都能安装，建议先进服务器安装成功easyocr后再安装此脚本"
+                      "\n‼️此脚本依赖了第三方库easyocr，这个库对cpu、gpu都有硬性要求。不是所有的服务器都能安装，建议先进服务器安装成功easyocr后再安装此脚本"
+                      "\n‼️此脚本依赖了第三方库easyocr，这个库对cpu、gpu都有硬性要求。不是所有的服务器都能安装，建议先进服务器安装成功easyocr后再安装此脚本"
                       "\n安装方法：,install ocr"
                       "\n使用方法：,ocr"
                       "\n\n作者：@inextopschannel"
