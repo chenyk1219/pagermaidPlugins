@@ -69,6 +69,16 @@
             "supported": true,
             "des_short": "update: 新增查看服务器进程的脚本\ntime: 2024年1月10日 17:22:48",
             "des": "查看服务器所有服务进程，看看有没有异常进程"
+        },
+        {
+            "name": "ocr",
+            "version": "1.0",
+            "section": "chat",
+            "maintainer": "chenyk1219",
+            "size": "3.134 kb",
+            "supported": true,
+            "des_short": "简单的图片OCR",
+            "des": "OCR图片识别"
         }
     ]
 }
