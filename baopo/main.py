@@ -14,6 +14,7 @@ import subprocess
 
 @listener(is_plugin=True, outgoing=True, command="baopo",
           description="查看服务器被爆破登陆的信息"
+                      "\n使用前提：系统要开了登陆审计记录，否则没有日志文件可以查询"
                       "\n安装方法：,install baopo"
                       "\n使用方法：,baopo"
                       "\n注意：此命令只在Linux系统下有效"
