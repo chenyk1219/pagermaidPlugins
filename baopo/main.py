@@ -37,7 +37,7 @@ async def baopo(bot: Client, context: Message):
 
         await context.edit("\n".join(context_list))
     elif os.path.exists('/var/log/auth.log'):
-        shell = "grep \"Invalid user\" /var/log/auth.log | awk -F'from' '{print $2}' | awk -F' ' '{print $1}' | sort | uniq -c | sort -nr | head -n10"
+        shell = "grep \"Failed\" /var/log/auth.log | awk -F'from' '{print $2}' | awk -F' ' '{print $1}' | sort | uniq -c | sort -nr | head -n10"
         faild_log = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT).stdout.read().decode(
             'utf-8').split('\n')
