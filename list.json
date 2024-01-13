@@ -82,10 +82,10 @@
         },
         {
             "name": "baopo",
-            "version": "1.0",
+            "version": "1.01",
             "section": "chat",
             "maintainer": "chenyk1219",
-            "size": "2.251 kb",
+            "size": "2.242 kb",
             "supported": true,
             "des_short": "update: 获取服务器被爆破登陆日志\ntime: 2024年1月13日 14:45:11",
             "des": "获取服务器被爆破登陆日志"
