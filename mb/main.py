@@ -64,11 +64,14 @@ def load_key_secret():
 
     :return:(key, secret)
     """
-    conf = ConfigParser()
-    conf.read(KEY_FILE, encoding="utf-8")
-    TOP = conf["MB"]["TOP"]
+    try:
+        conf = ConfigParser()
+        conf.read(KEY_FILE, encoding="utf-8")
+        TOP = conf["MB"]["TOP"]
 
-    return TOP
+        return TOP
+    except:
+        return 1024
 
 
 def set_key_secret(key, value):
