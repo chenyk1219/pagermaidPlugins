@@ -147,7 +147,7 @@ def get_net_top(tot_before, tot_after, pnic_before, pnic_after):
                       "仓库：https://github.com/chenyk1219/pagermaidPlugins"
           )
 async def mb(bot: Client, context: Message):
-    await context.edit("正在获取服务器资源使用情况...")
+    final_msg = await context.edit("正在获取服务器资源使用情况...")
     if not os.path.isfile('./SimHei.ttf'):
         await context.edit("正在下载微软雅黑字体依赖...")
         os.system('wget https://raw.githubusercontent.com/chenyk1219/pagermaidPlugins/main/fonts/SimHei.ttf')
@@ -259,6 +259,8 @@ async def mb(bot: Client, context: Message):
 
     await context.reply_photo('./vps.png', caption='', quote=False,
                               reply_to_message_id=context.reply_to_top_message_id)
+
+    await final_msg.safe_delete()
 
 
 @listener(is_plugin=True, outgoing=True, command="mbcf", description="获取服务器信号")
