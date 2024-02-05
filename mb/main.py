@@ -147,11 +147,13 @@ def get_net_top(tot_before, tot_after, pnic_before, pnic_after):
                       "仓库：https://github.com/chenyk1219/pagermaidPlugins"
           )
 async def mb(bot: Client, context: Message):
-    final_msg = await context.edit("正在获取服务器资源使用情况...")
+    await context.edit("正在获取服务器资源使用情况...")
     if not os.path.isfile('./SimHei.ttf'):
+        await context.edit("正在下载微软雅黑字体依赖...")
         os.system('wget https://raw.githubusercontent.com/chenyk1219/pagermaidPlugins/main/fonts/SimHei.ttf')
 
     fontManager.addfont('./SimHei.ttf')
+    await context.edit("正在检查脚本依赖情况...")
 
     # 中文乱码和坐标轴负号处理。
     matplotlib.rc('font', family='SimHei', weight='bold')
@@ -209,10 +211,10 @@ async def mb(bot: Client, context: Message):
     plt.title('服务器资源使用占比', loc='center', fontsize='18',
               fontweight='bold', color='#6699CC')
 
-    plt.savefig('./test.png')
+    plt.savefig('./vps.png')
     plt.show()
     # background_image_path = './img.png'
-    overlay_image_path = './test.png'
+    overlay_image_path = './vps.png'
 
     # background = Image.open(background_image_path)
     overlay = Image.open(overlay_image_path).resize((500, 300))
@@ -220,9 +222,9 @@ async def mb(bot: Client, context: Message):
     background = Image.new('RGB', (500, 400), color='black')
 
     background.paste(overlay, (0, 0), overlay)
-    background.save('./test.png')
+    background.save('./vps.png')
 
-    image = Image.open("./test.png")
+    image = Image.open("./vps.png")
 
     draw = ImageDraw.Draw(image)
 
@@ -253,14 +255,10 @@ async def mb(bot: Client, context: Message):
     draw.text(text3_position, text3_content, fill=text_color, font=font)
     draw.text(text4_position, text4_content, fill=text_color, font=font)
     # image.show()
-    image.save("./test.png")
+    image.save("./vps.png")
 
-    await bot.send_document(
-        context.chat.id,
-        "./test.png",
-        message_thread_id=context.message_thread_id,
-    )
-    await final_msg.safe_delete()
+    await context.reply_photo('./vps.png', caption='', quote=False,
+                              reply_to_message_id=context.reply_to_top_message_id)
 
 
 @listener(is_plugin=True, outgoing=True, command="mbcf", description="获取服务器信号")
