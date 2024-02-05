@@ -92,10 +92,10 @@
         },
         {
             "name": "mb",
-            "version": "1.02",
+            "version": "1.03",
             "section": "chat",
             "maintainer": "chenyk1219",
-            "size": "8.217 kb",
+            "size": "8.264 kb",
             "supported": true,
             "des_short": "获取服务器被爆破登陆的日志",
             "des": "服务器面板"
