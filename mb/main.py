@@ -55,7 +55,7 @@ finally:
     import requests
 
 BASE_DIR = pathlib.Path(__file__).resolve().parent
-KEY_FILE = BASE_DIR / "mb.ini"  # 存储key与secret的json文件路径
+KEY_FILE = BASE_DIR / "mb.ini"
 
 
 def load_key_secret():
@@ -71,10 +71,7 @@ def load_key_secret():
 
 
 def set_key_secret(key, value):
-    """
-    设置环境变量，存储API key
-    :return:
-    """
+
     conf = ConfigParser()
     if not os.path.exists(KEY_FILE):
         os.system(r"touch {}".format(KEY_FILE))
@@ -104,12 +101,7 @@ def get_isp_info():
 
 
 def bytes2human(n):
-    """
-    >>> bytes2human(10000)
-    '9.8 K'
-    >>> bytes2human(100001221)
-    '95.4 M'
-    """
+
     symbols = ('K', 'M', 'G')
     prefix = {}
     for i, s in enumerate(symbols):
@@ -122,10 +114,8 @@ def bytes2human(n):
 
 
 def poll(interval):
-    """Retrieve raw stats within an interval window."""
     tot_before = psutil.net_io_counters()
     pnic_before = psutil.net_io_counters(pernic=True)
-    # sleep some time
     time.sleep(interval)
     tot_after = psutil.net_io_counters()
     pnic_after = psutil.net_io_counters(pernic=True)
@@ -155,12 +145,9 @@ async def mb(bot: Client, context: Message):
     fontManager.addfont('./SimHei.ttf')
     await context.edit("正在检查脚本依赖情况...")
 
-    # 中文乱码和坐标轴负号处理。
     matplotlib.rc('font', family='SimHei', weight='bold')
     plt.rcParams['axes.unicode_minus'] = False
-    # plt.axis('off')
 
-    # 获取服务器资源使用情况。
     labels = ['CPU', 'MEM', 'DISK', 'NET']
 
     interval = 0
@@ -184,8 +171,6 @@ async def mb(bot: Client, context: Message):
     bottom_x = [0] * len(labels)
     sums = [sum(i) for i in zip(data1, data2)]
 
-    y = range(len(labels))
-    # 绘图。
     fig, ax = plt.subplots()
     fig.set_size_inches(5, 3)
     ax.spines['top'].set_visible(False)
@@ -195,28 +180,20 @@ async def mb(bot: Client, context: Message):
 
     for i in data3:
         y = [a / b for a, b in zip(i, sums)]
-        bar = ax.barh(range(len(labels)), y, height=0.5, left=bottom_x,
+        ax.barh(range(len(labels)), y, height=0.5, left=bottom_x,
                       color=[random.random(), random.random(), random.random()])
         bottom_x = [round(a + b, 2) for a, b in zip(bottom_x, y)]
-        # 在柱状图上添加数据标签
-        # for rect in bar:
-        #     w = rect.get_width()
-        #     ax.text(w, rect.get_y() + rect.get_height() / 2, '%d' %
-        #             w, ha='left', va='center')
 
     ax.set_yticks(range(len(labels)))
     ax.set_yticklabels(labels)
-    # plt.xticks(())
 
     plt.title('服务器资源使用占比', loc='center', fontsize='18',
               fontweight='bold', color='#6699CC')
 
     plt.savefig('./vps.png')
     plt.show()
-    # background_image_path = './img.png'
     overlay_image_path = './vps.png'
 
-    # background = Image.open(background_image_path)
     overlay = Image.open(overlay_image_path).resize((500, 300))
 
     background = Image.new('RGB', (500, 400), color='black')
@@ -254,7 +231,6 @@ async def mb(bot: Client, context: Message):
     draw.text(text2_position, text2_content, fill=text_color, font=font)
     draw.text(text3_position, text3_content, fill=text_color, font=font)
     draw.text(text4_position, text4_content, fill=text_color, font=font)
-    # image.show()
     image.save("./vps.png")
 
     await context.reply_photo('./vps.png', caption='', quote=False,
