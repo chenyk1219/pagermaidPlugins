@@ -59,11 +59,7 @@ KEY_FILE = BASE_DIR / "mb.ini"  # 存储key与secret的json文件路径
 
 
 def load_key_secret():
-    """
-    读取json文件中保存的API key
 
-    :return:(key, secret)
-    """
     try:
         conf = ConfigParser()
         conf.read(KEY_FILE, encoding="utf-8")
