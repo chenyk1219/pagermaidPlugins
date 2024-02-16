@@ -15,6 +15,7 @@ import time
 import re
 import pathlib
 from configparser import ConfigParser
+import datetime
 
 try:
     import psutil
@@ -139,11 +140,11 @@ def get_net_top(tot_before, tot_after, pnic_before, pnic_after):
 async def mb(bot: Client, context: Message):
     final_msg = await context.edit("正在获取服务器资源使用情况...")
     if not os.path.isfile('./SimHei.ttf'):
-        await context.edit("正在下载微软雅黑字体依赖...")
+        # await context.edit("正在下载微软雅黑字体依赖...")
         os.system('wget https://raw.githubusercontent.com/chenyk1219/pagermaidPlugins/main/fonts/SimHei.ttf')
 
     fontManager.addfont('./SimHei.ttf')
-    await context.edit("正在检查脚本依赖情况...")
+    # final_msg = await context.edit("正在检查脚本依赖情况...")
 
     matplotlib.rc('font', family='SimHei', weight='bold')
     plt.rcParams['axes.unicode_minus'] = False
@@ -160,10 +161,37 @@ async def mb(bot: Client, context: Message):
     net_top = load_key_secret()
     net_left = int(net_top) - net_user if net_top else 1024 - net_user
 
+    # 获取所有网卡的流量信息
+    net_io = psutil.net_io_counters(pernic=True)
+
+    # 初始化总流量统计变量
+    total_bytes_sent = 0
+    total_bytes_recv = 0
+
+    # 遍历所有网卡，累加发送和接收的字节数
+    for nic, counters in net_io.items():
+        total_bytes_sent += counters.bytes_sent
+        total_bytes_recv += counters.bytes_recv
+
+    total_bytes_sent = bytes2human(total_bytes_sent)
+    total_bytes_recv = bytes2human(total_bytes_recv)
+
     cpu_usage = psutil.cpu_percent(interval=1)
     memory_info = psutil.virtual_memory().percent
+    memory_total = bytes2human(psutil.virtual_memory().total)
+    memory_used = bytes2human(psutil.virtual_memory().used)
     disk_usage = psutil.disk_usage('/')
+    disk_total = bytes2human(disk_usage.total)
+    disk_used = bytes2human(disk_usage.used)
     disk_usage_percent = disk_usage.percent
+    run_time = datetime.datetime.now().timestamp() - psutil.boot_time()
+    run_day = int(run_time / 86400)
+    run_hour = int(run_time % 86400 / 3600)
+    run_minute = int(run_time % 86400 % 3600 / 60)
+
+    cpu_cores_physical = psutil.cpu_count(logical=False) or '无法获取（可能是因为当前环境的限制）'
+    cpu_cores_logical = psutil.cpu_count(logical=True)
+    cpu_freq = round(psutil.cpu_freq().current, 2)
 
     data1 = [cpu_usage * 100, memory_info, disk_usage_percent, net_user]
     data2 = [100 - cpu_usage * 100, 100 - memory_info, 100 - disk_usage_percent, net_left]
@@ -233,13 +261,19 @@ async def mb(bot: Client, context: Message):
     draw.text(text4_position, text4_content, fill=text_color, font=font)
     image.save("./vps.png")
 
-    await context.reply_photo('./vps.png', caption='', quote=False,
+    caption = (f'系统运行时间：{run_day}天{run_hour}小时{run_minute}分钟\n'
+               f'内存信息：{memory_used}/{memory_total}\n'
+               f'硬盘信息：{disk_used}/{disk_total}\n'
+               f'网络流量：总发送：{total_bytes_sent}GB，总接收：{total_bytes_recv}GB\n'
+               f'CPU信息：{cpu_cores_physical}核心物理CPU，{cpu_cores_logical}核心逻辑CPU，当前频率约为{cpu_freq}MHz，使用率：{cpu_usage}%\n')
+
+    await context.reply_photo('./vps.png', caption=caption, quote=False,
                               reply_to_message_id=context.reply_to_top_message_id)
 
     await final_msg.safe_delete()
 
 
-@listener(is_plugin=True, outgoing=True, command="mbcf", description="获取服务器信号")
+@listener(is_plugin=True, outgoing=True, command="mbcf", description="设置网络流量")
 async def mbcf(bot: Client, context: Message):
     value = str(context.parameter[0]).strip('"').strip("'")
     set_key_secret(key='TOP', value=value)
