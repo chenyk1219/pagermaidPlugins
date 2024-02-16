@@ -60,7 +60,6 @@ KEY_FILE = BASE_DIR / "mb.ini"
 
 
 def load_key_secret():
-
     try:
         conf = ConfigParser()
         conf.read(KEY_FILE, encoding="utf-8")
@@ -72,7 +71,6 @@ def load_key_secret():
 
 
 def set_key_secret(key, value):
-
     conf = ConfigParser()
     if not os.path.exists(KEY_FILE):
         os.system(r"touch {}".format(KEY_FILE))
@@ -102,7 +100,6 @@ def get_isp_info():
 
 
 def bytes2human(n):
-
     symbols = ('K', 'M', 'G')
     prefix = {}
     for i, s in enumerate(symbols):
@@ -209,7 +206,7 @@ async def mb(bot: Client, context: Message):
     for i in data3:
         y = [a / b for a, b in zip(i, sums)]
         ax.barh(range(len(labels)), y, height=0.5, left=bottom_x,
-                      color=[random.random(), random.random(), random.random()])
+                color=[random.random(), random.random(), random.random()])
         bottom_x = [round(a + b, 2) for a, b in zip(bottom_x, y)]
 
     ax.set_yticks(range(len(labels)))
@@ -264,8 +261,8 @@ async def mb(bot: Client, context: Message):
     caption = (f'系统运行时间：{run_day}天{run_hour}小时{run_minute}分钟\n'
                f'内存信息：{memory_used}/{memory_total}\n'
                f'硬盘信息：{disk_used}/{disk_total}\n'
-               f'网络流量：总发送：{total_bytes_sent}GB，总接收：{total_bytes_recv}GB\n'
-               f'CPU信息：{cpu_cores_physical}核心物理CPU，{cpu_cores_logical}核心逻辑CPU，当前频率约为{cpu_freq}MHz，使用率：{cpu_usage}%\n')
+               f'网络流量：总发送：{total_bytes_sent}，总接收：{total_bytes_recv}\n'
+               f'CPU信息：{cpu_cores_physical}核心物理CPU，{cpu_cores_logical}核心逻辑CPU，当前频率约为{cpu_freq}MHz，使用率：{cpu_usage * 100}%\n')
 
     await context.reply_photo('./vps.png', caption=caption, quote=False,
                               reply_to_message_id=context.reply_to_top_message_id)

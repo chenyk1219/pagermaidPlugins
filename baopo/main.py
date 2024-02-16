@@ -32,7 +32,8 @@ async def baopo(bot: Client, context: Message):
     context_list.append('=====================')
     context_list.append(templ % ("爆破IP", "爆破次数"))
     if os.path.exists('/var/log/secure'):
-        shell = "grep \"Invalid user\" /var/log/secure | awk -F'from' '{print $2}' | awk -F' ' '{print $1}' | sort | uniq -c | sort -nr | head -n10"
+        shell = ("grep \"Invalid user\" /var/log/secure | awk -F'from' '{print $2}' | awk -F' ' '{print $1}' | sort | "
+                 "uniq -c | sort -nr | head -n10")
         faild_log = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT).stdout.read().decode(
             'utf-8').split('\n')
@@ -48,7 +49,8 @@ async def baopo(bot: Client, context: Message):
             context_list.append("没有记录")
             await context.edit("\n".join(context_list))
     elif os.path.exists('/var/log/auth.log'):
-        shell = "grep \"Failed\" /var/log/auth.log | awk -F'from' '{print $2}' | awk -F' ' '{print $1}' | sort | uniq -c | sort -nr | head -n10"
+        shell = ("grep \"Failed\" /var/log/auth.log | awk -F'from' '{print $2}' | awk -F' ' '{print $1}' | sort | uniq "
+                 "-c | sort -nr | head -n10")
         faild_log = subprocess.Popen(shell, shell=True, stdout=subprocess.PIPE,
                                      stderr=subprocess.STDOUT).stdout.read().decode(
             'utf-8').split('\n')
